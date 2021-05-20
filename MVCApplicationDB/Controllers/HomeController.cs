@@ -9,8 +9,12 @@ namespace MVCApplicationDB.Controllers
 {
     public class HomeController : Controller
     {
-        MvcRestaurantDb _db = new MvcRestaurantDb();
-
+        IMvcRestaurantDb _db;
+        //MvcRestaurantDb _db = new MvcRestaurantDb();
+        public HomeController(IMvcRestaurantDb db)
+        {
+            _db = db;
+        }
         public ActionResult Index(string searchTerm = null)
         {
             var model =
