@@ -1,0 +1,43 @@
+﻿@model IEnumerable<MVCApplicationDB.Models.RestaurantListViewModel>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<form method ="get" action="@Url.Action("Index")"
+            data-mvc-ajax="true" data-mvc-target="#restaurantList">
+
+    <input type ="search" name="searchTerm" data-mvc-autocomplete="@Url.Action("Autocomplete")" />
+    <input type ="submit" value="Search By Name" />
+    </form>
+
+
+
+
+
+    @*<form method="get">
+
+            <input type="search" name="searchTerm" />
+            <input type="submit" value="Search By Name" />
+        </form>
+
+    *@
+
+    <div id="restaurantList">
+        @foreach (var item in Model)
+        {
+            <div class="review">
+                <h4>@item.Name</h4>
+                <div>
+                    @item.City, @item.Country
+                </div>
+                <div>
+                    Number of Reviews: @item.CountOfReviews
+                </div>
+
+            </div>
+        }
+    </div>
+
+
+    @Html.Partial("_Restaurants", Model)
